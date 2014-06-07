@@ -31,6 +31,7 @@ dataneed <- subset(data,as.Date("2007-02-01")<=as.Date(data$Date,"%d/%m/%Y")
                    & as.Date(data$Date,"%d/%m/%Y")<=as.Date("2007-02-02"))
 
 print("Begin Plot")
+
 ##Create png file device for Histogram, plot it and then exit the device
 png(file="plot1.png")
 hist(dataneed$Global_active_power, main = "Global Active Power", 
