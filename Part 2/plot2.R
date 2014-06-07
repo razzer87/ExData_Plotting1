@@ -1,4 +1,4 @@
-##Plot1 will create a histogram of the Global active power on Feb 1st and 2nd 2007
+##Plot2 will create a graph of the Global active power on Feb 1st and 2nd 2007
 ##It will download the data into a temp file direct from the URL given in the
 ##assignment. Note that as this script contains no function definitions, it will
 ##run when sourced. Also, I did not use fread or filter the file when reading, so
@@ -31,10 +31,13 @@ dataneed <- subset(data,as.Date("2007-02-01")<=as.Date(data$Date,"%d/%m/%Y")
                    & as.Date(data$Date,"%d/%m/%Y")<=as.Date("2007-02-02"))
 
 print("Begin Plot")
-##Create png file device for Histogram, plot it and then exit the device
-png(file="plot1.png")
-hist(dataneed$Global_active_power, main = "Global Active Power", 
-     xlab="Global Active Power(kilowatts)",col="red")
+##Create png file device for plot, plot it and then exit the device
+png(file="plot2.png")
+
+## Combine date and time strings and use strptime to turn them into timestamps
+x <- strptime(paste(dataneed$Date, dataneed$Time), "%d/%m/%Y %H:%M:%S")
+plot(x,dataneed$Global_active_power, type="l", xlab="",ylab="Global Active Power(Kilowatts)")
+
 dev.off()
 
 ##You will now have plot1.png in your working directory
